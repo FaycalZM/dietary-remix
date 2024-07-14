@@ -2,3 +2,5 @@ venv/
 .venv/
 __pycache__
 .env
+gemini_api_key.txt
+*.db

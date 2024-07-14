@@ -27,6 +27,15 @@ recipes = [
     }
 ]
 
+
+def connect_db():
+    try:
+        conn = sqlite3.connect(SQLITE_DB_PATH)
+        return conn
+    except Exception as e:
+        print(f"Error connecting to the database: {e}")
+
+
 def init_db():
     conn = sqlite3.connect(SQLITE_DB_PATH)
     cursor = conn.cursor()
