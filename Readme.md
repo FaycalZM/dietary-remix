@@ -5,7 +5,7 @@
 
 Dietary Remix is a web application that leverages AI to transform recipes based on different dietary requirements. It allows users to input recipes and convert them to various diets such as vegan, keto, gluten-free. The application uses MindsDB with Google's Gemini Pro model to perform intelligent recipe transformations while maintaining the essence and flavor profile of the original recipe.
 
-[![Quira Vote](https://img.shields.io/badge/Quira-View%20Repo-blue)](https://quira.sh/repo/sneha-4-22-Health_assistant-824874405?utm_source=copy&utm_share_context=quests_repos)
+[![Quira Vote](https://img.shields.io/badge/Quira-View%20Repo-blue)](https://quira.sh/repo/FaycalZM-dietary-remix-828689730?utm_source=copy&utm_share_context=rdp)
 
 
 ## Table of Contents 📑
@@ -91,6 +91,6 @@ Dietary Remix is a web application that leverages AI to transform recipes based 
 
 If you like this project, please support it by upvoting on Quira and starring the GitHub repository!
 
-[![Quira Repo](https://img.shields.io/badge/Quira-View%20Repo-blue)](https://quira.sh/repo/sneha-4-22-Health_assistant-824874405?utm_source=copy&utm_share_context=quests_repos)
+[![Quira Repo](https://img.shields.io/badge/Quira-View%20Repo-blue)](https://quira.sh/repo/FaycalZM-dietary-remix-828689730?utm_source=copy&utm_share_context=rdp)
 
 Thank you for your support!
