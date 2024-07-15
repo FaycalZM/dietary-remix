@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Transformer</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
+        h1, h2 { color: #333; }
+        form { margin-bottom: 20px; }
+        label { display: block; margin-top: 10px; }
+        input[type="text"], textarea, select { width: 100%; padding: 8px; margin-top: 5px; }
+        button { background-color: #4CAF50; color: white; padding: 10px 15px; border: none; cursor: pointer; margin-top: 10px; }
+        button:hover { background-color: #45a049; }
+        #result { background-color: #f9f9f9; border: 1px solid #ddd; padding: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Recipe Transformer</h1>
+    
+    <h2>Add New Recipe to Database</h2>
+    <form id="addRecipeForm">
+        <label for="add_recipe_name">Recipe Name:</label>
+        <input type="text" id="add_recipe_name" name="recipe_name" required>
+        
+        <label for="add_recipe_text">Recipe Text:</label>
+        <textarea id="add_recipe_text" name="recipe_text" rows="4" required></textarea>
+        
+        <button type="submit">Add Recipe to Database</button>
+    </form>
+
+    <h2>Transform Recipe</h2>
+    <form id="transformRecipeForm">
+        <label for="transform_recipe_name">Recipe Name:</label>
+        <input type="text" id="transform_recipe_name" name="recipe_name" required>
+        
+        <label for="transform_recipe_text">Recipe Text:</label>
+        <textarea id="transform_recipe_text" name="recipe_text" rows="4" required></textarea>
+        
+        <label for="diet">Diet Type:</label>
+        <select id="diet" name="diet" required>
+            <option value="vegan">Vegan</option>
+            <option value="keto">Keto</option>
+            <option value="gluten-free">Gluten-Free</option>
+        </select>
+        
+        <button type="submit">Transform Recipe</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        $(document).ready(function() {
+            // Add recipe form submission
+            $('#addRecipeForm').submit(function(e) {
+                e.preventDefault();
+                $.post('/add_recipe', $(this).serialize(), function(data) {
+                    alert('Recipe added successfully to the database!');
+                    $('#addRecipeForm')[0].reset();
+                });
+            });
+
+            // Transform recipe form submission
+            $('#transformRecipeForm').submit(function(e) {
+                e.preventDefault();
+                $.post('/transform_recipe', $(this).serialize(), function(data) {
+                    $('#result').html(
+                        '<h3>Transformed Recipe</h3>' +
+                        '<p><strong>Original Recipe Name:</strong> ' + data.recipe_name + '</p>' +
+                        '<p><strong>Diet:</strong> ' + data.diet + '</p>' +
+                        '<p><strong>Original Recipe:</strong></p>' +
+                        '<pre>' + data.original_recipe + '</pre>' +
+                        '<p><strong>Transformed Recipe:</strong></p>' +
+                        '<pre>' + data.transformed_recipe + '</pre>'
+                    );
+                });
+            });
+        });
+    </script>
+</body>
+</html>

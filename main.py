@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from data import *
 from recipe_transformer import *
 
@@ -8,27 +8,16 @@ engine = get_gemini_engine()
 model = get_gemini_model(gemini_engine=engine)
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
-    return 'Hello World!'
+    return render_template('index.html')
 
 @app.route('/transform_recipe', methods=['POST'])
 def transform_recipe():
-    data = request.json
-    recipe_id = data.get('recipe_id')
-    diet = data.get('diet')
+    recipe_name = request.form.get('recipe_name')
+    original_recipe_text = request.form.get('recipe_text')
+    diet = request.form.get('diet')
 
-    # Fetch the original recipe from the SQLite database
-    conn = connect_db()
-    cursor = conn.cursor()
-    cursor.execute("SELECT recipe_name, recipe_text FROM recipes WHERE recipe_id = ?", (recipe_id,))
-    result = cursor.fetchone()
-    conn.close()
-
-    if not result:
-        return jsonify({"error": "Recipe not found"}), 404
-
-    recipe_name, original_recipe_text = result
     
     recipe_text = original_recipe_text[:]
 
@@ -49,9 +38,8 @@ def transform_recipe():
 
 @app.route('/add_recipe', methods=['POST'])
 def add_recipe():
-    data = request.json
-    recipe_name = data.get('recipe_name')
-    recipe_text = data.get('recipe_text')
+    recipe_name = request.form.get('recipe_name')
+    recipe_text = request.form.get('recipe_text')
 
     if not recipe_name or not recipe_text:
         return jsonify({"error": "Both recipe name and text are required"}), 400
