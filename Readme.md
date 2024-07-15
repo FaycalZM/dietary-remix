@@ -39,7 +39,7 @@ Dietary Remix is a web application that leverages AI to transform recipes based 
 
 ## YouTube Demonstration
 
-[![Watch the video]()](https://www.youtube.com/watch?v=oDEMWkdwTWs)
+[Watch the video](https://www.youtube.com/watch?v=kuW1enQS0do)
 
 
 ## Requirements
